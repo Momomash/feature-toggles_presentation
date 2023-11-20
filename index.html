@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+
+        <title>Меняем фичи как перчатки</title>
+
+        <link rel="stylesheet" href="dist/reset.css" />
+        <link rel="stylesheet" href="dist/reveal.css" />
+        <link rel="stylesheet" href="dist/theme/dracula.css" />
+        <link rel="stylesheet" href="custom_styles.css" />
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+        <!-- Theme used for syntax highlighted code -->
+        <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+    </head>
+    <body>
+        <div class="reveal">
+            <ul class="slides">
+                <!--Вступление start-->
+                <section style="text-align: left">
+                    <h2>Жила была фича</h2>
+                    <h3>упрощаем релиз больших фич</h3>
+                </section>
+                <section>
+                    <ul style="list-style: none; margin-right: 20px">
+                        <li>Жила-была большая задача</li>
+                        <li>Feature Flags</li>
+                        <li>Итого/Подвохи</li>
+                        <li>Полезное почитать</li>
+                    </ul>
+                </section>
+                <!-- Вступление end-->
+                <!--Жила-была большая задача start -->
+                <section>
+                    <section>
+                        <h3>Жила-была большая задача</h3>
+                    </section>
+                    <section>
+                        <h3>История 1 - обновление фичи</h3>
+                    </section>
+                    <section>
+                        <div class="r-stack">
+                            <img src="img/1/1.png" />
+                            <img class="fragment" src="img/1/2.png" />
+                        </div>
+                    </section>
+                    <section>
+                        <div class="r-stack">
+                            <img src="img/1/3.png" />
+                            <img class="fragment" src="img/1/4.png" />
+                            <img class="fragment" src="img/1/5.png" />
+                        </div>
+                    </section>
+                    <section style="text-align: left">
+                        <h5>Проблемы:</h5>
+                        <ul style="list-style: none">
+                            <li>❌ Boilerplate</li>
+                            <li>❌ Лишние шаги для релиза/старта</li>
+                            <li>❌ Путаница в урлах</li>
+                            <li>
+                                ❌ Тестирование требует разных вкладок/измения
+                                урла
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>История 2 - песочница</h3>
+                    </section>
+                    <section>
+                        <ul style="list-style: none">
+                            <li>
+                                ❌ Нужен отдельный стенд / или учить дизайнеров
+                                разворачивать локалку
+                            </li>
+                            <li>❌ Нужны отдельные ветки</li>
+                            <li class="fragment">
+                                ❌ Требует больше контроля и боли разработчиков
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Как быть?</h3>
+                    </section>
+                </section>
+                <!--Жила-была большая задача end -->
+                <!-- Feature Flags start-->
+                <section>
+                    <section>
+                        <h3>Feature Toggles</h3>
+                    </section>
+                    <section>
+                        <img src="img/2/1.gif" alt="feature-toggles" />
+                    </section>
+                    <section>
+                        <div class="r-stack">
+                            <img src="img/2/2.png" alt="feature-toggles" />
+                            <img
+                                src="img/2/3.png"
+                                alt="feature-toggles"
+                                class="fragment"
+                            />
+                        </div>
+                    </section>
+                    <section>
+                        <h4>Что для этого нужно</h4>
+                        <ul style="list-style: none">
+                            <li>Конфиг всех фич</li>
+                            <li>Контекст над приложением</li>
+                            <li>HOC и Hook</li>
+                            <li>Интерфейс для управления</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h4>Конфиг</h4>
+                        <pre>
+                             <code class="json"  data-trim data-noescape data-line-numbers="0|1-3|4|5">
+                                 "demoFeature": {
+                                    "description": "Этот тогглер что-то делает",
+                                    "caption": "Супер тогглер",
+                                    "responsible": "Maria Kondaurova",
+                                    "inRelease": false
+                                  },
+                            </code>
+                        </pre>
+                    </section>
+                    <section>
+                        <h4>Контекст над приложением</h4>
+                        <img src="img/3/1.png" alt="features context" />
+                        <p class="fragment">+ localStorage для хранения фичи</p>
+                    </section>
+                    <section>
+                        <h4>HOC и Hook</h4>
+                        <img src="img/3/4.png" alt="hook" />
+                        <img src="img/3/5.png" alt="hoc" class="fragment" />
+                    </section>
+                    <section>
+                        <h4>Интерфейс для управления</h4>
+                        <a
+                            href="https://gleb-lobastov.github.io/toggleature/"
+                            target="_blank"
+                            ><img src="img/3/2.png" alt="features wrapper"
+                        /></a>
+                        <img
+                            src="img/3/3.png"
+                            alt="features wrapper code"
+                            class="fragment"
+                        />
+                    </section>
+                    <section>
+                        <h4>Как с релизами?</h4>
+                        <ol style="list-style: none">
+                            <li class="fragment">Заводим фича-флаг</li>
+                            <li class="fragment">Ведем в нем разработку</li>
+                            <li class="fragment">
+                                Перед релизом меняем в конфиге строчку
+                                <span style="color: greenyellow"
+                                    >inRelease</span
+                                >
+                                на <span style="color: greenyellow">true</span>
+                            </li>
+                            <li class="fragment">
+                                если что-то пошло не так - быстро отключаем фичу
+                                одной строкой
+                            </li>
+                            <li class="fragment">
+                                В следующем релизе зачищаем фича-флаг и
+                                deprecated код
+                            </li>
+                        </ol>
+                    </section>
+                </section>
+                <!--Feature Flags end-->
+                <!--Итого/Подвохи start-->
+                <section>
+                    <section>
+                        <h4>Итого/Подвохи</h4>
+                        <ul style="list-style: none">
+                            <li>✅ Нет доп закрытых урлов</li>
+                            <li>✅ Более быстрый релиз фичи</li>
+                            <li>✅ ✅ ✅ Рантайм!</li>
+                            <br />
+                            <li style="color: yellow">
+                                Требует контроля от разработчиков
+                            </li>
+                            <li style="color: yellow">Больше кода в сборке</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h4>Готовые пакеты?</h4>
+                        <img
+                            class="fragment"
+                            src="img/5/1.png"
+                            alt="feature packages"
+                        />
+                    </section>
+                </section>
+                <!--Итого/Подвохи end-->
+                <!--Полезное почитать start-->
+                <section>
+                    <section>
+                        <h3>Полезное почитать</h3>
+                    </section>
+                    <section>
+                        <ul style="list-style: none">
+                            <li>
+                                <a
+                                    href="https://habr.com/ru/companies/leroy_merlin/articles/755400/"
+                                    target="_blank"
+                                    >Habr: «Обновляй меня нежно» — как мы
+                                    докатились до Feature Toggle
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://habr.com/ru/articles/464021/"
+                                    target="_blank"
+                                    >Habr: Что такое feature toggle или как
+                                    избавиться от мучительных мёржей и
+                                    долгоживущих веток?</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="https://docs.gitlab.com/ee/operations/feature_flags.html"
+                                    target="_blank"
+                                >
+                                    Gitlab feature flags</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="https://habr.com/ru/articles/519314/"
+                                    target="_blank"
+                                    >Habr: Почему Trunk Based Development –
+                                    лучшая модель ветвления. Андрей
+                                    Александров</a
+                                >
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+                <!--Полезное почитать end-->
+                <section>
+                    <section><h3>Спасибо!</h3></section>
+                    <section><h3>Q&A</h3></section>
+                </section>
+            </ul>
+            <!-- finish! -->
+        </div>
+
+        <script src="dist/reveal.js"></script>
+        <script src="plugin/notes/notes.js"></script>
+        <script src="plugin/markdown/markdown.js"></script>
+        <script src="plugin/highlight/highlight.js"></script>
+        <script>
+            // More info about initialization & config:
+            // - https://revealjs.com/initialization/
+            // - https://revealjs.com/config/
+            Reveal.initialize({
+                hash: true,
+                transition: 'none',
+                // Learn about plugins: https://revealjs.com/plugins/
+                plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+            })
+        </script>
+    </body>
+</html>
